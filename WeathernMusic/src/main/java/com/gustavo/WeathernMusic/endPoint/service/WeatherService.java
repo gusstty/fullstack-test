@@ -26,7 +26,7 @@ public class WeatherService {
     private final String API_KEY = "eea056e0bc3ca68acfa330a8407321b2";
 
     public String apiWeatherRequestGetCurrentTemperature(Address address) {
-        RequestController gr = new RequestController();
+        RequestService gr = new RequestService();
 
         String methodRequest = GET_REQUEST;
         String host = HOST_WHEATHER;

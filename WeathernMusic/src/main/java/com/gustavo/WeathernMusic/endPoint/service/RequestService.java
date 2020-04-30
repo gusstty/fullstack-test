@@ -21,7 +21,7 @@ import java.util.Map;
  *
  * @author Gustavo
  */
-public class RequestController {
+public class RequestService {
 
     public String genericRequest(String methodRequest, String host, String endpoint,
                                  String param, boolean isSpotify, String token) throws MalformedURLException, IOException {

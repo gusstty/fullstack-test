@@ -5,6 +5,7 @@
  */
 package com.gustavo.WeathernMusic.endPoint.controller;
 
+import com.gustavo.WeathernMusic.endPoint.service.MusicService;
 import com.gustavo.WeathernMusic.model.WeatherWapper;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class MusicController {
     @RequestMapping("/spotify")
     public String spotfy(WeatherWapper weatherWapper){
-        return "Essa merda vai consumir a API do Spotfy";
+        
+        MusicService ms = new MusicService();
+        String recomendations = ms.musicRecomendation("28");
+        
+        return recomendations;
     }
 }

@@ -1,6 +1,6 @@
 package com.gustavo.WeathernMusic.model;
 
-import com.gustavo.WeathernMusic.endPoint.service.RequestController;
+import com.gustavo.WeathernMusic.endPoint.service.RequestService;
 
 /**
  *
