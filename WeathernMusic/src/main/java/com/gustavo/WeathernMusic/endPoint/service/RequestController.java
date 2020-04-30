@@ -21,14 +21,20 @@ import java.util.Map;
  *
  * @author Gustavo
  */
-public class GennericRequest {
+public class RequestController {
 
-    public String WeatherRequest(String methodRequest, String host, String endpoint,String param) throws MalformedURLException, IOException {
+    public String genericRequest(String methodRequest, String host, String endpoint,
+                                 String param, boolean isSpotify, String token) throws MalformedURLException, IOException {
 
         URL url = new URL(host.concat("/").concat(endpoint).concat(param));
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setConnectTimeout(10000);
         con.setRequestMethod(methodRequest);
+        
+        if(isSpotify){
+            con.setRequestProperty("Content-Type", "application/json");
+            con.setRequestProperty("Authorization", "Bearer ".concat(token));
+        }
         
         int status = con.getResponseCode();
         Reader streamReader = null;
@@ -52,23 +58,6 @@ public class GennericRequest {
         con.disconnect();
 
         return content.toString();
-    }
-
-    private static String getParamsString(Map<String, String> params)
-            throws UnsupportedEncodingException {
-        StringBuilder result = new StringBuilder();
-
-        for (Map.Entry<String, String> entry : params.entrySet()) {
-            result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
-            result.append("=");
-            result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
-            result.append("&");
-        }
-
-        String resultString = result.toString();
-        return resultString.length() > 0
-                ? resultString.substring(0, resultString.length() - 1)
-                : resultString;
     }
 
 }

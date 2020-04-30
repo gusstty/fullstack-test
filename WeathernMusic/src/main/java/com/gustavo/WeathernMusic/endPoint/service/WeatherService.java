@@ -26,7 +26,7 @@ public class WeatherService {
     private final String API_KEY = "eea056e0bc3ca68acfa330a8407321b2";
 
     public String apiWeatherRequestGetCurrentTemperature(Address address) {
-        GennericRequest gr = new GennericRequest();
+        RequestController gr = new RequestController();
 
         String methodRequest = GET_REQUEST;
         String host = HOST_WHEATHER;
@@ -39,7 +39,7 @@ public class WeatherService {
         param += "&appid=".concat(API_KEY);
 
         try {
-            requestReturn = gr.WeatherRequest(methodRequest, host, endpoint, param);
+            requestReturn = gr.genericRequest(methodRequest, host, endpoint, param, false, null);
             temp = parseJsonWeatherRequest(requestReturn);
         } catch (IOException | JSONException ex) {
             Logger.getLogger(WeatherService.class.getName()).log(Level.SEVERE, null, ex);
