@@ -15,7 +15,7 @@ public class MusicService {
     private final String GET_REQUEST = "GET";
     private final String HOST_WHEATHER = "https://api.spotify.com";
     private final String ENDPOINT_MUSIC_RECOMENDATION = "v1/browse/categories";
-    private final String API_KEY = "Bearer BQBlMqMKCTQQ4nzcvMH1rVDv1LCS8oiOMKVNsOkgLRDFWwPQTTC6b0oj7Ao35Xtujp9NvzjFBx2M2JGduMxQn8uYDFjdkf3znPaOl_VOS2uep2lubzr00qe2pwWqjO0Dt3PU19kq7dIWrlfsc1XanltdK6QrNxH_rhyZBkWvZek1rRIGdNqIyI7VDrh_AX8WVoEOzMEiq-sL17mgkHu1ASWhgNEgoKy9eBpB1SvqAVm4mgNwlrrXa0yZf5BWrjuNlBtboOMxUfJKOYfwxH7JiT5EQN-1vyhciuTP";
+    private final String API_KEY = "BQDhUiS7V7yvzGNy20uiXpkuO7AoReN5zWEZnrVO4QTxz2KMhyjpptat8-6ECKfyudmq_fiZr16vaQN3hw0LvaanAZiKpaTnd8wXjUeoyCQU6kA-jfQmqmAQDIisq5Zzw7mTHDHA0IftoIjwxCuBATsXGzULB9ORGc1K_ZzUILZzrLznhL7LqhvmzXG3lkI_XGi3ch2xHxJ-6_il3CY5VRp4WOTGDECBMaID1fbY7ZnYBtficAf3jnGdLSFUEIbFfeXCCG2dIKZEECAsD9DW08KFIq7-1xxo-p6t";
 
     public String musicRecomendation(String temp) {
         RequestService gr = new RequestService();
@@ -30,7 +30,7 @@ public class MusicService {
         float fTemp = Float.parseFloat(temp);
 
         if (fTemp > 30) {
-            param = "/rock";
+            param = "/party";
         } else if ((fTemp > 15) && (fTemp < 30)) {
             param = "/pop";// Pop
         } else if ((fTemp > 10) && (fTemp < 14)) {
@@ -51,8 +51,8 @@ public class MusicService {
 
     private String parseJsonMusicRequest(String request) throws JSONException {
         JSONObject obj = new JSONObject(request);
-        JSONObject main = obj.getJSONObject("main");
-        String temp = main.getString("temp");
+        //JSONObject main = obj.getJSONObject("href");
+        String temp = obj.getString("href");
 
         return temp;
     }

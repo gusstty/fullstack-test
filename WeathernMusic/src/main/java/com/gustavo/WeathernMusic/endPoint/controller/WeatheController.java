@@ -21,14 +21,16 @@ public class WeatheController {
             @RequestParam(required = true) String state,
             @RequestParam(required = true) String country) {
         WeatherService ws = new WeatherService();
-
+        MusicService ms = new MusicService();
         Address address = new Address();
 
         address.setCity(city);
         address.setState(state);
         address.setCountry(country);
         String currentTemp = ws.apiWeatherRequestGetCurrentTemperature(address);
+        String musicRecomendation = ms.musicRecomendation(currentTemp);
         
-        return currentTemp;
+        //return currentTemp;
+        return musicRecomendation;
     }
 }
