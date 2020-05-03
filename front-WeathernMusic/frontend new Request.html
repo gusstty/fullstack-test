@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+window.onload = function() {
+	document.getElementById("Save").onclick = function fun() {
+		var city = document.forms["myForm"]["city"].value;
+		var state = document.forms["myForm"]["state"].value;
+		var country = document.forms["myForm"]["country"].value;
+// http://localhost:9090/weather?city=Campinas&state=SP&country=Br
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
+var Url = "http://localhost:9090/weather?city="+city+"&state="+state+"&country="+country;
+var urlConcat = (proxyurl+Url)
+console.log(urlConcat)
+response1 = httpGet(urlConcat);
+
+document.getElementById("statusMessage").innerHTML  =response1;
+}
+
+function httpGet(url)
+{
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open( "GET", url, false );
+	xmlHttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+	xmlHttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { 
+			return xmlHttp.responseText;
+		}
+		xmlHttp.send( null );
+
+	}
+}
+</script>
+</head>
+<body>
+<center>
+Weathern Music
+<br> <br>
+<form name="myForm">
+<input type="text" name="city"/>
+<input type="text" name="state"/>
+<input type="text" name="country"/>
+
+<input type="button" id="Save" onclick="f1()" value="Music Recomendation"/>
+</form>
+<center>
+<br> <br>
+<table border="1">
+<tr><td>statusCode :</td><td id="statusCode"></td></tr>
+<tr><td>statusMessage :</td><td id="statusMessage"></td></tr>
+</table>
+</body>
+</html>

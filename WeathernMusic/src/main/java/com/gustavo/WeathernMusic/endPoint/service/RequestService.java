@@ -12,6 +12,7 @@ import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import org.apache.http.client.HttpResponseException;
 
 /**
  *
@@ -33,12 +34,12 @@ public class RequestService {
         }
 
         int status = con.getResponseCode();
-        Reader streamReader = null;
+        InputStreamReader  streamReader = null;
 
         // 
         if (status > 299) {
             streamReader = new InputStreamReader(con.getErrorStream());
-            return streamReader.toString();
+            throw new HttpResponseException(status, host);
         } else {
             streamReader = new InputStreamReader(con.getInputStream());
         }
