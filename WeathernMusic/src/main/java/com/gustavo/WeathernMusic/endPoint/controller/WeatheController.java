@@ -25,9 +25,9 @@ public class WeatheController {
         MusicService ms = new MusicService();
         Address address = new Address();
 
-        address.setCity(city);
-        address.setState(state);
-        address.setCountry(country);
+        address.setCity(city.trim());
+        address.setState(state.toUpperCase().trim());
+        address.setCountry(country.substring(0, 1).toUpperCase() + country.substring(1).toLowerCase());
         String currentTemp = ws.apiWeatherRequestGetCurrentTemperature(address);
         String musicRecomendation = ms.musicRecomendation(currentTemp);
         

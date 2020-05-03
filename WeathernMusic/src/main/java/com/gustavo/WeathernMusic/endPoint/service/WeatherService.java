@@ -43,6 +43,7 @@ public class WeatherService {
             temp = parseJsonWeatherRequest(requestReturn);
         } catch (IOException | JSONException ex) {
             Logger.getLogger(WeatherService.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.toString();  
         }
         
         return temp;
